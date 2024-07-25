@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>REGISTRO AUTOR</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            padding-top: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://editorialamaltea.com/wp-content/uploads/pexels-amnah-mohammad-7935224-optimized.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .navbar-custom {
+            background-color: #343a40;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: #ffffff;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .form-label {
+            font-weight: bold;
+            color: #343a40;
+        }
+        .form-control {
+            border: 2px solid #dee2e6;
+            transition: border-color 0.3s ease;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: none;
+        }
+        .navbar-custom {
+            background-color: #343a40;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .nav-link:hover {
+            color: #ffdd57;
+        }
+    </style>
+</head>
+<body>
+<!--Barra de navegación-->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="temlates/index.html" href="index">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="temlates/Libro/libros.html" href="libros">Libros</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="form-container">
+    <form th:action="@{/registrarAutor}" method="post" th:object="${autor}" id="bookForm">
+        <div class="mb-3">
+            <label for="id-nombre" class="form-label">Nombre</label>
+            <input type="text" th:field="*{nombre}" class="form-control" id="id-nombre">
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">El nombre no es valido</span>
+        </div>
+        <div class="mb-3">
+            <label for="id-email" class="form-label">Email</label>
+            <input type="email" th:field="*{email}" class="form-control" id="id-email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">El email no es valido</span>
+        </div>
+        <div class="mb-3">
+            <label for="id-naciminto" class="form-label">Fecha Nacimineto</label>
+            <input type="date" th:field="*{fechanacimiento}" class="form-control" id="id-naciminto">
+            <span th:if="${#fields.hasErrors('fechanacimiento')}" th:errors="*{fechanacimiento}">La fecha no es valido</span>
+        </div>
+        <div class="mb-3">
+            <label for="id-sueldo" class="form-label">Sueldo</label>
+            <input type="text" th:field="*{sueldo}" class="form-control" id="id-sueldo">
+            <span th:if="${#fields.hasErrors('sueldo')}" th:errors="*{sueldo}">El sueldo no es valido</span>
+        </div>
+        <div class="mb-3">
+            <label for="id-password" class="form-label">Password</label>
+            <input type="password" th:field="*{password}" class="form-control" id="id-password">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">La password no es valido</span>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+    </form>
+</div>
+</body>
+</html>
